@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+<script>
+let atractor;
+let planet = {pos:null,vel:null,acc:null};
+
+function setup(){
+	createCanvas(400,400);
+	atractor = createVector(0,0);
+	planet.pos = createVector(100,50);
+	planet.vel = createVector(0.5,0.5);
+}
+function draw(){
+	background(0);
+	fill(255);
+	translate(width/2,height/2);
+	let v = p5.Vector.sub(atractor,planet.pos);
+	let m = dist(atractor.x,atractor.y,planet.pos.x,planet.pos.y);
+	let ax = 0.1*(1/(m))*v.x;
+	let ay = 0.1*(1/(m))*v.y;
+	let a = createVector(ax,ay);
+	//d.mult(3);
+	planet.vel.add(a);
+	planet.pos.add(planet.vel);
+	rect(planet.pos.x,planet.pos.y,10,10);
+	//console.log(planet.pos);
+}
+</script>
+
+
+</head>
+<body>
+</body>
+</html>
